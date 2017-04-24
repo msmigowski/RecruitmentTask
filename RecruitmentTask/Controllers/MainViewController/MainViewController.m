@@ -132,10 +132,13 @@
     
     // Setting image
     NSURL *imageUrl = [NSURL URLWithString: [self.favouriteCharactersArray objectAtIndex: indexPath.row].thumbnail];
-    [cell.thumbnailImageView sd_setImageWithURL:imageUrl placeholderImage:[UIImage imageNamed:@"10tg77"]];
+//    [cell.thumbnailImageView sd_setImageWithURL:imageUrl placeholderImage:[UIImage imageNamed:@"10tg77"]];
     [cell.thumbnailImageView sd_setImageWithURL: imageUrl
                                placeholderImage:[UIImage imageNamed:@"10tg77"]
                                       completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                                          if ( error != nil ) {
+                                              NSLog(@"%@", error.description);
+                                          }
                                           [self.favouriteCharactersArray objectAtIndex: indexPath.row].thumbnailImage = image;
                                       }];
     

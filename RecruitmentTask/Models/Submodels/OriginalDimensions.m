@@ -13,8 +13,13 @@
 - (instancetype)initWithDictionary:(NSDictionary *)dict {
     self = [super init];
     if (self) {
-        self.width = [dict objectForKey:@"width"];
-        self.height = [dict objectForKey:@"height"];
+        if ( [dict isKindOfClass: [NSNull class]] ) {
+            self.width = @"0";
+            self.height = @"0";
+        } else {
+            self.width = [dict objectForKey:@"width"];
+            self.height = [dict objectForKey:@"height"];
+        }
     }
     return self;
 }

@@ -13,10 +13,17 @@
 - (instancetype)initWithDictionary:(NSDictionary *)dict {
     self = [super init];
     if (self) {
-        self.idRevision = [dict objectForKey:@"id"];
-        self.user = [dict objectForKey:@"user"];
-        self.user_id = [dict objectForKey:@"user_id"];
-        self.timestamp = [dict objectForKey:@"timestamp"];
+        if ( [dict isKindOfClass: [NSNull class]] ) {
+            self.idRevision = @"";
+            self.user = @"";
+            self.user_id = @"";
+            self.timestamp = @"";
+        } else {
+            self.idRevision = [dict objectForKey:@"id"];
+            self.user = [dict objectForKey:@"user"];
+            self.user_id = [dict objectForKey:@"user_id"];
+            self.timestamp = [dict objectForKey:@"timestamp"];
+        }
     }
     return self;
 }
